@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
 
+
+
 class DataWidget extends StatelessWidget{
-  DataWidget();
+  final ValueNotifier<String> selectedState;
+
+  const DataWidget({super.key, required this.selectedState});
   Widget build(BuildContext context){
-    return Container(width: 500,height: 575, child: 
-            Column(children: [Container(color: Colors.redAccent, width: double.infinity, height: 30, child: Text("Estado"),)],),);
+    return ValueListenableBuilder(valueListenable: selectedState, builder: (context, value, _){
+      return Container(width: 500,height: 575, child: 
+            Column(children: [Container(width: double.infinity, padding: EdgeInsets.all(10), decoration: BoxDecoration(color: Colors.red, borderRadius: BorderRadius.circular(9)),
+                      child: Text(value, textAlign: TextAlign.center,
+                              style: TextStyle(letterSpacing: 1.5, fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white),),)],),);
   }
+    );
+    
+}
 }
