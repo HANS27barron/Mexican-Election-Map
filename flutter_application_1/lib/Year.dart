@@ -1,0 +1,54 @@
+import 'package:flutter/material.dart';
+
+const List<String> list = ["1994","2000","2006", "2012", "2018"];
+
+class DropdownButtonApp extends StatelessWidget {
+  const DropdownButtonApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: const Text('DropdownButton Sample')),
+        body: const Center(child: DropdownButtonExample()),
+      ),
+    );
+  }
+}
+
+class DropdownButtonExample extends StatefulWidget {
+  const DropdownButtonExample({super.key});
+
+  @override
+  State<DropdownButtonExample> createState() => _DropdownButtonExampleState();
+}
+
+class _DropdownButtonExampleState extends State<DropdownButtonExample> {
+  String dropdownValue = list.first;
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton<String>(
+      padding: EdgeInsets.only(left:10, right:10),
+      borderRadius: BorderRadius.circular(15),
+      focusColor: Color.fromARGB(143, 38, 139, 41),
+      iconEnabledColor: Color.fromARGB(255, 4, 33, 14),
+      dropdownColor: Color.fromARGB(255, 2, 61, 15),
+      value: dropdownValue,
+      //icon: Icon(Icons.today_rounded, color: Color.fromARGB(255, 255, 255, 255), size: 25),
+      elevation: 8,
+      style: const TextStyle(letterSpacing: 1.1, fontSize: 18, fontWeight: FontWeight.bold, color: Color.fromARGB(255, 255, 255, 255)),
+      underline: Container(height: 0, color: Color.fromARGB(255, 255, 255, 255)),
+      onChanged: (String? value) {
+        // This is called when the user selects an item.
+        setState(() {
+          dropdownValue = value!;
+        });
+      },
+      items:
+          list.map<DropdownMenuItem<String>>((String value) {
+            return DropdownMenuItem<String>(value: value, child: Text(value));
+          }).toList(),
+    );
+  }
+}

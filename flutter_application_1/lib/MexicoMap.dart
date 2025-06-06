@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import "package:countries_world_map/countries_world_map.dart";
+import 'package:flutter_application_1/DataWidget.dart';
 
 
 
@@ -11,7 +12,7 @@ class MexicoMap extends StatelessWidget {
       body: Row(
         
         children: [
-          SizedBox(width: 30,),
+          SizedBox(width: 0),
           Container(
             width: 800,
             child: Column(mainAxisAlignment: MainAxisAlignment.center,children: [
@@ -27,7 +28,7 @@ class MexicoMap extends StatelessWidget {
                 );
               },
             ),
-    ]))]),
+    ])), SizedBox(width: 50,), DataWidget()]),
     );
   }
 }

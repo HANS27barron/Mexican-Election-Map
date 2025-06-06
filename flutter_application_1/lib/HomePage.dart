@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: mexAppBar(),
-      body: MexicoMap(),
+      body: MexicoMap(), 
       backgroundColor: Color.fromARGB(255, 13, 41, 19)
     );
   }
