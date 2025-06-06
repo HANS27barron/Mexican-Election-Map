@@ -35,6 +35,7 @@ class _MexicoMapState extends State<MexicoMap> {
                 } else {
                   tappedState=id;
                   selectedState.value=name;
+                  
                 }
               });
               },
@@ -47,7 +48,7 @@ class _MexicoMapState extends State<MexicoMap> {
 
 
             ),
-    ])), SizedBox(width: 50,), DataWidget(selectedState: selectedState)]),
+    ])), SizedBox(width: 60,), DataWidget(selectedState: selectedState)]),
     );
   }
 }

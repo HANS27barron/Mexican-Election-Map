@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const List<String> list = ["1994","2000","2006", "2012", "2018"];
+const List<String> list = ["Seleccione","1994","2000","2006", "2012", "2018"];
 
 class DropdownButtonApp extends StatelessWidget {
   const DropdownButtonApp({super.key});
@@ -25,7 +25,6 @@ class DropdownButtonExample extends StatefulWidget {
 
 class _DropdownButtonExampleState extends State<DropdownButtonExample> {
   String dropdownValue = list.first;
-
   @override
   Widget build(BuildContext context) {
     return DropdownButton<String>(
@@ -35,19 +34,19 @@ class _DropdownButtonExampleState extends State<DropdownButtonExample> {
       iconEnabledColor: Color.fromARGB(255, 4, 33, 14),
       dropdownColor: Color.fromARGB(255, 2, 61, 15),
       value: dropdownValue,
+      
       //icon: Icon(Icons.today_rounded, color: Color.fromARGB(255, 255, 255, 255), size: 25),
       elevation: 8,
       style: const TextStyle(letterSpacing: 1.1, fontSize: 18, fontWeight: FontWeight.bold, color: Color.fromARGB(255, 255, 255, 255)),
       underline: Container(height: 0, color: Color.fromARGB(255, 255, 255, 255)),
       onChanged: (String? value) {
-        // This is called when the user selects an item.
         setState(() {
           dropdownValue = value!;
         });
       },
       items:
           list.map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(value: value, child: Text(value));
+            return DropdownMenuItem<String>(value: value, enabled: value != list.first, child: Text(value));
           }).toList(),
     );
   }
