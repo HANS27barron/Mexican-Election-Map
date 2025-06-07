@@ -45,11 +45,7 @@ class mexAppBar extends StatelessWidget implements PreferredSizeWidget{
         TextButton.icon(onPressed: ()=> openDialog(), label: Text("Referencias", style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),), icon: Icon(Icons.question_mark_rounded, color: Colors.white,)),
         SizedBox(width: 20,)], 
     );
-    
-  
-
   }
-
     Size get preferredSize => Size.fromHeight(kToolbarHeight);
 
 

@@ -51,6 +51,7 @@ class _MexicoMapState extends State<MexicoMap> {
                   widget.selectedState.value=name;
                 }
               },
+              
             );
   }
 }
