@@ -3,25 +3,31 @@ import "package:countries_world_map/countries_world_map.dart";
 import 'package:flutter_application_1/DataWidget.dart';
 
 class MexicoMap extends StatefulWidget {
+
+  final ValueNotifier<String> selectedState;
+
+  const MexicoMap({required this.selectedState});  // accept the notifier
+
   @override
   State<MexicoMap> createState() => _MexicoMapState();
 }
 
 class _MexicoMapState extends State<MexicoMap> {
 
-  final ValueNotifier<String> selectedState = ValueNotifier("");
+  Map<String, Color> partyColors = {
+    "PAN": Color.fromARGB(255, 14, 39, 185),
+    "AC": Color.fromARGB(255, 14, 39, 185),
+    "PAN_PRD_MC_CAND": Color.fromARGB(255, 14, 39, 185),
+    "PRI": Color.fromARGB(255, 24, 185, 3),
+    "PRD": Color.fromARGB(255, 232, 198, 6),
+    "PT_MORENA_ES_CAND": Color.fromARGB(255, 144, 1, 42)
+  };
+
   String? tappedState;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Color.fromARGB(255, 13, 41, 19), 
-      body: Row(
-        children: [
-          SizedBox(width: 0),
-          Container(
-            width: 800,
-            child: Column(mainAxisAlignment: MainAxisAlignment.center,children: [
-             SimpleMap(
+    return SimpleMap(
               instructions: SMapMexico.instructions, // Mexico map instructions
               countryBorder: CountryBorder(color: Color.fromARGB(255, 0, 0, 0)),
               defaultColor: Color.fromARGB(255, 228, 223, 223), // Default color for other areas (if any)
@@ -34,7 +40,7 @@ class _MexicoMapState extends State<MexicoMap> {
                   tappedState=null;
                 } else {
                   tappedState=id;
-                  selectedState.value=name;
+                  widget.selectedState.value=name;
                   
                 }
               });
@@ -42,13 +48,9 @@ class _MexicoMapState extends State<MexicoMap> {
 
               onHover: (id, name, tapDetails) {
                 if(tappedState==null){
-                  selectedState.value=name;
+                  widget.selectedState.value=name;
                 }
               },
-
-
-            ),
-    ])), SizedBox(width: 60,), DataWidget(selectedState: selectedState)]),
-    );
+            );
   }
 }
