@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import "package:countries_world_map/countries_world_map.dart";
-import 'package:flutter_application_1/DataWidget.dart';
 
 class MexicoMap extends StatefulWidget {
 
   final ValueNotifier<String> selectedState;
+  final ValueNotifier<String> results;
 
-  const MexicoMap({required this.selectedState});  // accept the notifier
+  const MexicoMap({required this.selectedState, required this.results});  // accept the notifier
 
   @override
   State<MexicoMap> createState() => _MexicoMapState();
@@ -41,6 +41,7 @@ class _MexicoMapState extends State<MexicoMap> {
                 } else {
                   tappedState=id;
                   widget.selectedState.value=name;
+                  
                   
                 }
               });

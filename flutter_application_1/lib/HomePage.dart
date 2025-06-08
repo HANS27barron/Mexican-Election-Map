@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/AppBar.dart';
-import 'package:flutter_application_1/MexicoMap.dart';
 import 'package:flutter_application_1/WidgetOrg.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,12 +9,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final ValueNotifier<String> selectedState = ValueNotifier("");
+  final ValueNotifier<String> results = ValueNotifier("");
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: mexAppBar(),
-      body: WidgetOrg(selectedState: selectedState), 
+      body: WidgetOrg(selectedState: selectedState, results: results,), 
       backgroundColor: Color.fromARGB(255, 13, 41, 19)
     );
   }

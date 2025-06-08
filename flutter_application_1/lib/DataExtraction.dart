@@ -3,9 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show ByteData, rootBundle;
 import 'package:excel/excel.dart';
 
-Future<void> dataExtraction(String year) async {
+class dataExtraction extends StatefulWidget {
+  
+  final ValueNotifier<String> year;
+  final ValueNotifier<String> results;
 
-  ByteData data = await rootBundle.load('assets/elecciones$year.xlsx');
+  const dataExtraction({required this.year, required this.results});
+
+  @override
+  State<dataExtraction> createState() => _dataExtractionState();
+}
+
+
+class _dataExtractionState extends State<dataExtraction>  {
+
+  Future getResults() async {
+  ByteData data = await rootBundle.load('assets/elecciones${widget.year.value}.xlsx');
   var bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
   var excel = Excel.decodeBytes(bytes);
   final String firstSheetName = excel.tables.keys.first;
@@ -14,10 +27,10 @@ Future<void> dataExtraction(String year) async {
   Map<String, Map<String, int>> stateVotes = {};
 
   String party1 =  sheet!.cell(CellIndex.indexByColumnRow(columnIndex: 6, rowIndex: 0)).value.toString();
-  String party2 = sheet!.cell(CellIndex.indexByColumnRow(columnIndex: 7, rowIndex: 0)).value.toString();
-  String party3 = sheet!.cell(CellIndex.indexByColumnRow(columnIndex: 8, rowIndex: 0)).value.toString();
+  String party2 = sheet.cell(CellIndex.indexByColumnRow(columnIndex: 7, rowIndex: 0)).value.toString();
+  String party3 = sheet.cell(CellIndex.indexByColumnRow(columnIndex: 8, rowIndex: 0)).value.toString();
 
-      for (int i = 1; i < sheet!.maxRows; i++) {
+      for (int i = 1; i < sheet.maxRows; i++) {
       var row = sheet.row(i);
 
       String? state = row[1]?.value?.toString();
@@ -54,4 +67,33 @@ Future<void> dataExtraction(String year) async {
 
   print(firstSheetName);
   print(stateVotes);
+
+  return stateVotes;
 }
+
+ @override
+Widget build(BuildContext context) {
+  return FutureBuilder(
+    future: getResults(),
+    builder: (BuildContext context, AsyncSnapshot snapshot) {
+      if (snapshot.connectionState == ConnectionState.waiting) {
+        return const CircularProgressIndicator(); // Show loading indicator
+      } else if (snapshot.hasData) {
+        final Map<String, Map<String, int>> results = snapshot.data;
+        return ListView(
+          children: results.entries.map((entry) {
+            return ListTile(
+              title: Text(entry.key), // State name
+              subtitle: Text(entry.value.entries.map((e) => "${e.key}: ${e.value}").join(", ")),
+            );
+          }).toList(),
+        );
+      } else if (snapshot.hasError) {
+        return Text("Error: ${snapshot.error}");
+      } else {
+        return const Text("No data found.");
+      }
+    },
+  );
+}
+  }

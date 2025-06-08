@@ -3,22 +3,9 @@ import 'package:flutter_application_1/DataExtraction.dart';
 
 const List<String> list = ["Seleccione","1994","2000","2006", "2012", "2018"];
 
-class DropdownButtonApp extends StatelessWidget {
-  const DropdownButtonApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(title: const Text('DropdownButton Sample')),
-        body: const Center(child: DropdownButtonExample()),
-      ),
-    );
-  }
-}
-
 class DropdownButtonExample extends StatefulWidget {
-  const DropdownButtonExample({super.key});
+  final ValueNotifier<String> year;
+  const DropdownButtonExample({super.key, required this.year});
 
   @override
   State<DropdownButtonExample> createState() => _DropdownButtonExampleState();
@@ -41,9 +28,10 @@ class _DropdownButtonExampleState extends State<DropdownButtonExample> {
       style: const TextStyle(letterSpacing: 1.1, fontSize: 18, fontWeight: FontWeight.bold, color: Color.fromARGB(255, 255, 255, 255)),
       underline: Container(height: 0, color: Color.fromARGB(255, 255, 255, 255)),
       onChanged: (String? value) async {
-        dataExtraction(value!);
+        //dataExtraction(value!);
         setState(() {
           dropdownValue = value!;
+          widget.year.value = value;
         });
       },
       items:

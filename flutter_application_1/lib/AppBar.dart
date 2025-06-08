@@ -8,6 +8,8 @@ import 'package:url_launcher/url_launcher.dart';
 class mexAppBar extends StatelessWidget implements PreferredSizeWidget{
   final String title;
   final Color color;
+  final ValueNotifier<String> year = ValueNotifier("2021");
+
   
   mexAppBar({
     this.title="Mapa Electoral Mexicano",
@@ -41,7 +43,7 @@ class mexAppBar extends StatelessWidget implements PreferredSizeWidget{
                         ),
       backgroundColor: color,
       actions: [Container(child: Padding(padding: EdgeInsets.only(right: 6), child: Text("Año Electoral:", style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),),),),
-        Container(child: Padding(padding: EdgeInsets.only(right: 450), child: DropdownButtonExample())),
+        Container(child: Padding(padding: EdgeInsets.only(right: 450), child: DropdownButtonExample(year: year))),
         TextButton.icon(onPressed: ()=> openDialog(), label: Text("Referencias", style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),), icon: Icon(Icons.question_mark_rounded, color: Colors.white,)),
         SizedBox(width: 20,)], 
     );
