@@ -4,9 +4,8 @@ import "package:countries_world_map/countries_world_map.dart";
 class MexicoMap extends StatefulWidget {
 
   final ValueNotifier<String> selectedState;
-  final ValueNotifier<String> results;
 
-  const MexicoMap({required this.selectedState, required this.results});  // accept the notifier
+  const MexicoMap({required this.selectedState});  // accept the notifier
 
   @override
   State<MexicoMap> createState() => _MexicoMapState();

@@ -28,7 +28,6 @@ class _DropdownButtonExampleState extends State<DropdownButtonExample> {
       style: const TextStyle(letterSpacing: 1.1, fontSize: 18, fontWeight: FontWeight.bold, color: Color.fromARGB(255, 255, 255, 255)),
       underline: Container(height: 0, color: Color.fromARGB(255, 255, 255, 255)),
       onChanged: (String? value) async {
-        //dataExtraction(value!);
         setState(() {
           dropdownValue = value!;
           widget.year.value = value;

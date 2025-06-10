@@ -8,12 +8,14 @@ import 'package:url_launcher/url_launcher.dart';
 class mexAppBar extends StatelessWidget implements PreferredSizeWidget{
   final String title;
   final Color color;
-  final ValueNotifier<String> year = ValueNotifier("2021");
+  final ValueNotifier<String> year;
+
 
   
   mexAppBar({
     this.title="Mapa Electoral Mexicano",
-    this.color= const Color.fromARGB(255, 7, 111, 26)
+    this.color= const Color.fromARGB(255, 7, 111, 26),
+    required this.year
   });
 
   Widget build(BuildContext context){
@@ -49,7 +51,5 @@ class mexAppBar extends StatelessWidget implements PreferredSizeWidget{
     );
   }
     Size get preferredSize => Size.fromHeight(kToolbarHeight);
-
-
 
 }

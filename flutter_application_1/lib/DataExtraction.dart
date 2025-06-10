@@ -4,16 +4,12 @@ import 'package:flutter/services.dart' show ByteData, rootBundle;
 import 'package:excel/excel.dart';
 
 class dataExtraction extends StatefulWidget {
-  
   final ValueNotifier<String> year;
-  final ValueNotifier<String> results;
-
-  const dataExtraction({required this.year, required this.results});
+  const dataExtraction({required this.year});
 
   @override
   State<dataExtraction> createState() => _dataExtractionState();
 }
-
 
 class _dataExtractionState extends State<dataExtraction>  {
 
@@ -55,7 +51,6 @@ class _dataExtractionState extends State<dataExtraction>  {
   String state = entry.key;
   Map<String, int> votesMap = entry.value;
 
-  // Sort parties by vote count in descending order
   var sortedParties = votesMap.entries.toList()
     ..sort((a, b) => b.value.compareTo(a.value));
 
@@ -63,9 +58,15 @@ class _dataExtractionState extends State<dataExtraction>  {
   for (var e in sortedParties) {
     print('${e.key}: ${e.value}');
   }
+
+  setState((){
+  }
+
+  );
 }
 
   print(firstSheetName);
+
   print(stateVotes);
 
   return stateVotes;
@@ -82,9 +83,9 @@ Widget build(BuildContext context) {
         final Map<String, Map<String, int>> results = snapshot.data;
         return ListView(
           children: results.entries.map((entry) {
-            return ListTile(
-              title: Text(entry.key), // State name
-              subtitle: Text(entry.value.entries.map((e) => "${e.key}: ${e.value}").join(", ")),
+            return Text("year"
+             // title: Text(entry.key), // State name
+              //subtitle: Text(entry.value.entries.map((e) => "${e.key}: ${e.value}").join(", ")),
             );
           }).toList(),
         );

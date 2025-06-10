@@ -9,14 +9,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final ValueNotifier<String> selectedState = ValueNotifier("");
-  final ValueNotifier<String> results = ValueNotifier("");
+  final ValueNotifier<String> year = ValueNotifier("");
 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: mexAppBar(),
-      body: WidgetOrg(selectedState: selectedState, results: results,), 
+      appBar: mexAppBar(year: year,),
+      body: WidgetOrg(selectedState: selectedState, year: year), 
       backgroundColor: Color.fromARGB(255, 13, 41, 19)
     );
   }
