@@ -3,18 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show ByteData, rootBundle;
 import 'package:excel/excel.dart';
 
-class dataExtraction extends StatefulWidget {
+/* class dataExtraction extends StatefulWidget {
   final ValueNotifier<String> year;
   const dataExtraction({required this.year});
 
   @override
   State<dataExtraction> createState() => _dataExtractionState();
-}
+} */
 
-class _dataExtractionState extends State<dataExtraction>  {
+class dataExtraction extends StatelessWidget  {
+  final ValueNotifier<String> year;
+  final ValueNotifier<String> selectedState;
+  const dataExtraction({required this.year, required this.selectedState});
 
   Future getResults() async {
-  ByteData data = await rootBundle.load('assets/elecciones${widget.year.value}.xlsx');
+  ByteData data = await rootBundle.load('assets/elecciones${year.value}.xlsx');
   var bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
   var excel = Excel.decodeBytes(bytes);
   final String firstSheetName = excel.tables.keys.first;
@@ -22,9 +25,9 @@ class _dataExtractionState extends State<dataExtraction>  {
 
   Map<String, Map<String, int>> stateVotes = {};
 
-  String party1 =  sheet!.cell(CellIndex.indexByColumnRow(columnIndex: 6, rowIndex: 0)).value.toString();
-  String party2 = sheet.cell(CellIndex.indexByColumnRow(columnIndex: 7, rowIndex: 0)).value.toString();
-  String party3 = sheet.cell(CellIndex.indexByColumnRow(columnIndex: 8, rowIndex: 0)).value.toString();
+  String party1 =  sheet!.cell(CellIndex.indexByColumnRow(columnIndex: 7, rowIndex: 0)).value.toString();
+  String party2 = sheet.cell(CellIndex.indexByColumnRow(columnIndex: 8, rowIndex: 0)).value.toString();
+  String party3 = sheet.cell(CellIndex.indexByColumnRow(columnIndex: 9, rowIndex: 0)).value.toString();
 
       for (int i = 1; i < sheet.maxRows; i++) {
       var row = sheet.row(i);
@@ -46,7 +49,7 @@ class _dataExtractionState extends State<dataExtraction>  {
       if (party2Votes != null) stateVotes[state]![party2] = stateVotes[state]![party2]! + party2Votes;
       if (party3Votes != null) stateVotes[state]![party3] = stateVotes[state]![party3]! + party3Votes;
     }
-
+/* 
     for (var entry in stateVotes.entries) {
   String state = entry.key;
   Map<String, int> votesMap = entry.value;
@@ -59,16 +62,8 @@ class _dataExtractionState extends State<dataExtraction>  {
     print('${e.key}: ${e.value}');
   }
 
-  setState((){
-  }
-
-  );
-}
-
-  print(firstSheetName);
-
-  print(stateVotes);
-
+} 
+*/
   return stateVotes;
 }
 
@@ -81,16 +76,12 @@ Widget build(BuildContext context) {
         return const CircularProgressIndicator(); // Show loading indicator
       } else if (snapshot.hasData) {
         final Map<String, Map<String, int>> results = snapshot.data;
-        return ListView(
-          children: results.entries.map((entry) {
-            return Text("year"
-             // title: Text(entry.key), // State name
-              //subtitle: Text(entry.value.entries.map((e) => "${e.key}: ${e.value}").join(", ")),
-            );
-          }).toList(),
-        );
+        final Map<String, int>? selectedVotes = results[selectedState.value];
+        final sortedVotes = selectedVotes!.entries.toList()
+          ..sort((a, b) => b.value.compareTo(a.value));
+        return Text(sortedVotes.toString());
       } else if (snapshot.hasError) {
-        return Text("Error: ${snapshot.error}");
+        return Text("");
       } else {
         return const Text("No data found.");
       }

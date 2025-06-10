@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/DataExtraction.dart';
 
 class DataWidget extends StatelessWidget{
   final ValueNotifier<String> selectedState;
@@ -15,7 +16,7 @@ class DataWidget extends StatelessWidget{
                 child: Text(state, textAlign: TextAlign.center,
                   style: TextStyle(letterSpacing: 1.5, fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white),),), 
                   SizedBox(height: 15,),
-                Expanded(child: Container(child: Text(y), height:double.infinity, width: double.infinity, decoration: BoxDecoration(color: Color.fromARGB(255, 151, 106, 103), borderRadius: BorderRadius.circular(9)),))],),);
+                Expanded(child: Container(child: dataExtraction(year: year, selectedState: selectedState,), height:double.infinity, width: double.infinity, decoration: BoxDecoration(color: Color.fromARGB(255, 151, 106, 103), borderRadius: BorderRadius.circular(9)),))],),);
   });
     });
     
