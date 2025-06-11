@@ -13,10 +13,10 @@ class PartyData {
   };
 
   static Map<String, Color> colors = {
-    "PAN": Color.fromARGB(255, 23, 0, 170),
-    "PRI": Color.fromARGB(255, 0, 138, 18),
-    "PRD": Color.fromARGB(255, 200, 184, 6),
-    "MORENA": Color.fromARGB(255, 151, 18, 58)
+    "PAN": Color.fromARGB(255, 35, 19, 141),
+    "PRI": Color.fromARGB(255, 6, 87, 17),
+    "PRD": Color.fromARGB(255, 137, 127, 15),
+    "MORENA": Color.fromARGB(255, 102, 4, 33)
   };
 
   static Map<String, String> states = {

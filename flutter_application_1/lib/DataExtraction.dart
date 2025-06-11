@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show ByteData, rootBundle;
@@ -51,21 +50,7 @@ class dataExtraction extends StatelessWidget  {
       if (party2Votes != null) stateVotes[state]![party2] = stateVotes[state]![party2]! + party2Votes;
       if (party3Votes != null) stateVotes[state]![party3] = stateVotes[state]![party3]! + party3Votes;
     }
-/* 
-    for (var entry in stateVotes.entries) {
-  String state = entry.key;
-  Map<String, int> votesMap = entry.value;
 
-  var sortedParties = votesMap.entries.toList()
-    ..sort((a, b) => b.value.compareTo(a.value));
-
-  print('\n$state:');
-  for (var e in sortedParties) {
-    print('${e.key}: ${e.value}');
-  }
-
-} 
-*/
   return stateVotes;
 }
 
@@ -84,7 +69,6 @@ Widget build(BuildContext context) {
       final winnerString = "${sortedVotes[0].key}${year.value}";
          return Padding (padding: EdgeInsets.symmetric(vertical:20, horizontal: 20),
          child: Column(children: [
-          //crossAxisAlignment: CrossAxisAlignment.start,
           PartyData.winner[winnerString]!,
         ...sortedVotes.map((entry) {
             final image = PartyData.images[entry.key];
@@ -104,11 +88,10 @@ Widget build(BuildContext context) {
             ));
           }).toList(),
   ]));
-        //return Text(sortedVotes.toString());
       } else if (snapshot.hasError) {
         return Text("");
       } else {
-        return const Text("No data found.");
+        return Text("No data found.");
       }
     },
   );

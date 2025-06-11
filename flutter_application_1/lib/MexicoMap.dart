@@ -20,6 +20,7 @@ class _MexicoMapState extends State<MexicoMap> {
   String? tappedState;
   Map<String, Color> stateColors = {};
   Map<String, Map<String, int>>? results;
+
   late Color aguascalientes;
   late Color bajaCalifornia;
   late Color bajaCaliforniaSur;
@@ -53,7 +54,6 @@ class _MexicoMapState extends State<MexicoMap> {
   late Color yucatan;
   late Color zacatecas;
 
-
   @override
   void initState() {
     super.initState();
@@ -64,7 +64,6 @@ class _MexicoMapState extends State<MexicoMap> {
     Future<void> _loadResults() async {
     final data = await dataExtraction(year: widget.year, selectedState: widget.selectedState).getResults();
 
-    final colors = <String, Color>{};
     final stateParty = <String, String>{};
 
     data.forEach((stateName, votes) {
@@ -72,17 +71,11 @@ class _MexicoMapState extends State<MexicoMap> {
       ..sort((MapEntry<String, int> a, MapEntry<String, int> b) => b.value.compareTo(a.value));     
 
       final topParty = sortedVotes.first.key;
-      final stateCode = PartyData.states[stateName];
       stateParty[stateName]=topParty;
-      
-      if (stateCode != null) {
-        colors[stateCode] = PartyData.colors[topParty] ?? Colors.grey;
-      }
     });
     print(stateParty);
 
     setState(() {
-      colors["Aguascalientes"] = Colors.red;
       aguascalientes = PartyData.colors[stateParty["Aguascalientes"]] ?? Color.fromARGB(255, 255, 255, 255);
       bajaCalifornia = PartyData.colors[stateParty["Baja California"]] ?? Color.fromARGB(255, 255, 255, 255);
       bajaCaliforniaSur = PartyData.colors[stateParty["Baja California Sur"]] ?? Color.fromARGB(255, 255, 255, 255);
@@ -116,7 +109,6 @@ class _MexicoMapState extends State<MexicoMap> {
       yucatan = PartyData.colors[stateParty["Yucatán"]] ?? Color.fromARGB(255, 255, 255, 255);
       zacatecas = PartyData.colors[stateParty["Zacatecas"]] ?? Color.fromARGB(255, 255, 255, 255);
       results = data;
-      stateColors = ({"mxCOL": Colors.amber});
     });
   }
 
@@ -125,14 +117,13 @@ class _MexicoMapState extends State<MexicoMap> {
     if (results == null) {
       return SimpleMap(
       instructions: SMapMexico.instructions,
-      countryBorder: CountryBorder(color: Colors.black),
+      countryBorder: CountryBorder(color: Color.fromARGB(255, 103, 103, 103)),
       defaultColor: const Color.fromARGB(255, 228, 223, 223),
       colors: SMapMexicoColors().toMap(),);
     }
     return SimpleMap(
-      key: ValueKey(stateColors.hashCode),  // <--- FORCE rebuild
       instructions: SMapMexico.instructions,
-      countryBorder: CountryBorder(color: Colors.black),
+      countryBorder: CountryBorder(color: const Color.fromARGB(255, 255, 255, 255), width: 100),
       defaultColor: Color.fromRGBO(228, 223, 223, 1),
       colors: SMapMexicoColors(
           mxAGU: aguascalientes,
@@ -169,7 +160,6 @@ class _MexicoMapState extends State<MexicoMap> {
           mxZAC: zacatecas,
           ).toMap(),
       callback: (id, name, tapDetails) {
-        print(stateColors);
         setState(() {
           if (tappedState == id) {
             tappedState = null;
