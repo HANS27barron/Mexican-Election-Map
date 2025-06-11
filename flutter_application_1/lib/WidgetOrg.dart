@@ -15,7 +15,7 @@ class WidgetOrg extends StatelessWidget {
     return Scaffold(backgroundColor: Color.fromARGB(255, 13, 41, 19), 
     body: Container(child: Column(children: [SizedBox(height: 20), Row(
         children: [
-          MexicoMap(selectedState: selectedState), SizedBox(width: 60,), 
+          MexicoMap(selectedState: selectedState, year: year,), SizedBox(width: 60,), 
           DataWidget(selectedState: selectedState, year: year)
           ])]))
           );

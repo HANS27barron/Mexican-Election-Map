@@ -19,6 +19,41 @@ class PartyData {
     "MORENA": Color.fromARGB(255, 151, 18, 58)
   };
 
+  static Map<String, String> states = {
+  "Aguascalientes": "mxAGU",
+  "Baja California": "mxBCN",
+  "Baja California Sur": "mxBCS",
+  "Campeche": "mxCAM",
+  "Chihuahua": "mxCHH",
+  "Chiapas": "mxCHP",
+  "Coahuila": "mxCOA",
+  "Colima": "mxCOL",
+  "Ciudad de México": "mxDIF",
+  "Durango": "mxDUR",
+  "Guerrero": "mxGRO",
+  "Guanajuato": "mxGUA",
+  "Hidalgo": "mxHID",
+  "Jalisco": "mxJAL",
+  "México": "mxMEX",
+  "Michoacán": "mxMIC",
+  "Morelos": "mxMOR",
+  "Nayarit": "mxNAY",
+  "Nuevo León": "mxNEL",
+  "Oaxaca": "mxOAX",
+  "Puebla": "mxPUE",
+  "Querétaro": "mxQUE",
+  "Quintana Roo": "mxROO",
+  "Sinaloa": "mxSIN",
+  "San Luis Potosí": "mxSLP",
+  "Sonora": "mxSON",
+  "Tabasco": "mxTAB",
+  "Tamaulipas": "mxTAM",
+  "Tlaxcala": "mxTLA",
+  "Veracruz": "mxVER",
+  "Yucatán": "mxYUC",
+  "Zacatecas": "mxZAC"
+};
+
   static TextStyle styleCandidate = TextStyle(fontSize: 15, fontWeight: FontWeight.w700);
 
 
