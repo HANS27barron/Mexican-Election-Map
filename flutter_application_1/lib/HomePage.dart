@@ -8,7 +8,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final ValueNotifier<String> selectedState = ValueNotifier("");
+  final ValueNotifier<String> selectedState = ValueNotifier("Distrito Federal");
   final ValueNotifier<String> year = ValueNotifier("");
 
 

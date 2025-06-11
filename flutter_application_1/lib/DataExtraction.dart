@@ -58,7 +58,7 @@ Widget build(BuildContext context) {
     future: getResults(),
     builder: (BuildContext context, AsyncSnapshot snapshot) {
       if (snapshot.connectionState == ConnectionState.waiting) {
-        return SizedBox(child: Center(child:  CircularProgressIndicator(color: Color.fromARGB(255, 171, 8, 32),)), height: 100); // Show loading indicator
+        return SizedBox(child: Center(child:  CircularProgressIndicator(color: Color.fromARGB(255, 163, 163, 163),)), height: 100); // Show loading indicator
       } else if (snapshot.hasData) {
       final Map<String, Map<String, int>> results = snapshot.data;
       final Map<String, int>? selectedVotes = results[selectedState.value];
