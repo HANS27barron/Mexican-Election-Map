@@ -68,6 +68,11 @@ flutter:
     - assets/elecciones2006.xlsx
     - assets/elecciones2012.xlsx
     - assets/elecciones2018.xlsx
+    - assets/PAN.png
+    - assets/PRI.png
+    - assets/PRD.png
+    - assets/MORENA.png
+
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

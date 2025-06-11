@@ -1,7 +1,9 @@
 import 'dart:io';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show ByteData, rootBundle;
 import 'package:excel/excel.dart';
+import 'package:flutter_application_1/PartyIcon.dart';
 
 /* class dataExtraction extends StatefulWidget {
   final ValueNotifier<String> year;
@@ -79,7 +81,28 @@ Widget build(BuildContext context) {
         final Map<String, int>? selectedVotes = results[selectedState.value];
         final sortedVotes = selectedVotes!.entries.toList()
           ..sort((a, b) => b.value.compareTo(a.value));
-        return Text(sortedVotes.toString());
+        
+         return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: sortedVotes.map((entry) {
+            final image = PartyIcon.images[entry.key];
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+              child: Row(
+                children: [
+                  image ?? Icon(Icons.flag), // Replace with actual party icons if needed
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Text(
+                      "${entry.key} ${(entry.value)} votos",
+                      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }).toList(),);
+        //return Text(sortedVotes.toString());
       } else if (snapshot.hasError) {
         return Text("");
       } else {
