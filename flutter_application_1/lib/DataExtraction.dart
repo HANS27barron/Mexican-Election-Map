@@ -75,32 +75,32 @@ Widget build(BuildContext context) {
     future: getResults(),
     builder: (BuildContext context, AsyncSnapshot snapshot) {
       if (snapshot.connectionState == ConnectionState.waiting) {
-        return const CircularProgressIndicator(); // Show loading indicator
+        return SizedBox(child: Center(child:  CircularProgressIndicator(color: Color.fromARGB(255, 171, 8, 32),)), height: 100); // Show loading indicator
       } else if (snapshot.hasData) {
         final Map<String, Map<String, int>> results = snapshot.data;
         final Map<String, int>? selectedVotes = results[selectedState.value];
       final sortedVotes = selectedVotes!.entries.toList()
       ..sort((a, b) => b.value.toInt().compareTo(a.value.toInt()));
-         return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+         return Padding (padding: EdgeInsets.symmetric(vertical:20, horizontal: 20),
+         child: Column(
+          //crossAxisAlignment: CrossAxisAlignment.start,
           children: sortedVotes.map((entry) {
             final image = PartyIcon.images[entry.key];
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
-              child: Row(
+            final totalVotes = sortedVotes.fold<int>(0, (sum, entry) => sum + entry.value);
+            final percentage = ((entry.value/totalVotes)*100).toStringAsPrecision(4);
+            return Padding(padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20), child: 
+              Row(
                 children: [
-                  image ?? Icon(Icons.flag), // Replace with actual party icons if needed
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Text(
-                      "${entry.key} ${(entry.value)} votos",
-                      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-                    ),
-                  ),
+                  image ?? Icon(Icons.flag), 
+                  SizedBox(width: 12),
+                  Text(entry.key,  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)), 
+                  SizedBox(width: 20), 
+                  Text("${(entry.value)} votos", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
+                  SizedBox(width: 20),
+                  Text("$percentage%", style:TextStyle(fontSize: 15, fontWeight: FontWeight.w600))
                 ],
-              ),
-            );
-          }).toList(),);
+            ));
+          }).toList(),));
         //return Text(sortedVotes.toString());
       } else if (snapshot.hasError) {
         return Text("");
