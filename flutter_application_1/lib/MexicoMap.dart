@@ -13,15 +13,6 @@ class MexicoMap extends StatefulWidget {
 
 class _MexicoMapState extends State<MexicoMap> {
 
-  Map<String, Color> partyColors = {
-    "PAN": Color.fromARGB(255, 14, 39, 185),
-    "AC": Color.fromARGB(255, 14, 39, 185),
-    "PAN_PRD_MC_CAND": Color.fromARGB(255, 14, 39, 185),
-    "PRI": Color.fromARGB(255, 24, 185, 3),
-    "PRD": Color.fromARGB(255, 232, 198, 6),
-    "PT_MORENA_ES_CAND": Color.fromARGB(255, 144, 1, 42)
-  };
-
   String? tappedState;
 
   @override
