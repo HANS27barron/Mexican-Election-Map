@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: mexAppBar(year: year,),
       body: WidgetOrg(selectedState: selectedState, year: year), 
-      backgroundColor: Color.fromARGB(255, 13, 41, 19)
+      backgroundColor: Color.fromARGB(255, 19, 24, 36)
     );
   }
 }

@@ -117,13 +117,13 @@ class _MexicoMapState extends State<MexicoMap> {
     if (results == null) {
       return SimpleMap(
       instructions: SMapMexico.instructions,
-      countryBorder: CountryBorder(color: Color.fromARGB(255, 103, 103, 103)),
-      defaultColor: const Color.fromARGB(255, 228, 223, 223),
+      countryBorder: CountryBorder(color: Color.fromARGB(255, 0, 0, 0)),
+      defaultColor: Color.fromARGB(255, 97, 97, 97),
       colors: SMapMexicoColors().toMap(),);
     }
     return SimpleMap(
       instructions: SMapMexico.instructions,
-      countryBorder: CountryBorder(color: const Color.fromARGB(255, 255, 255, 255), width: 100),
+      countryBorder: CountryBorder(color: Color.fromARGB(255, 0, 0, 0), width: 100),
       defaultColor: Color.fromRGBO(228, 223, 223, 1),
       colors: SMapMexicoColors(
           mxAGU: aguascalientes,

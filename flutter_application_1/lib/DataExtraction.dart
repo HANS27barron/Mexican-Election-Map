@@ -39,13 +39,11 @@ class dataExtraction extends StatelessWidget  {
       int? party3Votes = int.tryParse(row[9]?.value.toString() ?? '');
 
       if (state == null) continue;
-
       stateVotes.putIfAbsent(state, () => {
         party1: 0,
         party2: 0,
         party3: 0,
       });
-
       if (party1Votes != null) stateVotes[state]![party1] = stateVotes[state]![party1]! + party1Votes;
       if (party2Votes != null) stateVotes[state]![party2] = stateVotes[state]![party2]! + party2Votes;
       if (party3Votes != null) stateVotes[state]![party3] = stateVotes[state]![party3]! + party3Votes;
@@ -79,11 +77,11 @@ Widget build(BuildContext context) {
                 children: [
                   image ?? Icon(Icons.flag), 
                   SizedBox(width: 12),
-                  Text(entry.key,  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: PartyData.colors[entry.key])), 
+                  Text(entry.key,  style: TextStyle(decorationColor: Colors.amber, fontSize: 25, fontWeight: FontWeight.bold, color: PartyData.colors[entry.key])), 
                   SizedBox(width: 40), 
-                  Text("$percentage%", style:TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
+                  Text("$percentage%", style:TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Colors.white)),
                   SizedBox(width: 20),
-                  Text("${(entry.value)} votos", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
+                  Text("${(entry.value)} votos", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: Colors.white)),
                 ],
             ));
           }).toList(),

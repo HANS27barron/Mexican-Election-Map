@@ -14,7 +14,7 @@ class mexAppBar extends StatelessWidget implements PreferredSizeWidget{
   
   mexAppBar({
     this.title="Mapa Electoral Mexicano",
-    this.color= const Color.fromARGB(255, 7, 111, 26),
+    this.color= const Color.fromARGB(255, 33, 33, 33),
     required this.year
   });
 
@@ -30,12 +30,12 @@ class mexAppBar extends StatelessWidget implements PreferredSizeWidget{
     }
 
     openDialog()=> showDialog(context: context, builder: (context)=>
-        AlertDialog(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)), backgroundColor: Color.fromARGB(255, 98, 98, 98),
+        AlertDialog(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)), backgroundColor: Color.fromARGB(255, 59, 59, 59),
                     title: Text("Referencias", textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold),), 
                     content: Container(height: 90, child: Column(children: [
-                      Text("Los datos de esta aplicación fueron obtenidos a través del Sistema de Consulta de la Estadística de las Elecciones."),  
-                      Text("Instituto Nacional Electoral, 2025."),
-                      TextButton(onPressed: _launchUrl, child: Text("Presione para ir al sitio", style: TextStyle(fontWeight: FontWeight.bold, color: Color.fromARGB(255, 214, 181, 223)),))
+                      Text("Los datos de esta aplicación fueron obtenidos a través del Sistema de Consulta de la Estadística de las Elecciones.", style: TextStyle(color: Colors.white),),  
+                      Text("Instituto Nacional Electoral, 2025.", style: TextStyle(color: Colors.white)),
+                      TextButton(onPressed: _launchUrl, child: Text("Presione para ir al sitio", style: TextStyle(fontWeight: FontWeight.bold, color: Color.fromARGB(255, 180, 178, 180)),))
                     ]))));
     
     return AppBar(

@@ -12,7 +12,7 @@ class WidgetOrg extends StatelessWidget {
   Widget build(BuildContext context){
     return ValueListenableBuilder(valueListenable: selectedState, builder: (context, x, _){
       return ValueListenableBuilder(valueListenable: year, builder: (context, y, _){
-    return Scaffold(backgroundColor: Color.fromARGB(255, 13, 41, 19), 
+    return Scaffold(backgroundColor: Color.fromARGB(255, 2, 5, 19), 
     body: Container(child: Column(children: [SizedBox(height: 20), Row(
         children: [
           MexicoMap(selectedState: selectedState, year: year,), SizedBox(width: 60,), 

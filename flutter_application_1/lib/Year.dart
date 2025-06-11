@@ -18,9 +18,9 @@ class _DropdownButtonExampleState extends State<DropdownButtonExample> {
     return DropdownButton<String>(
       padding: EdgeInsets.only(left:10, right:10),
       borderRadius: BorderRadius.circular(15),
-      focusColor: Color.fromARGB(143, 38, 139, 41),
-      iconEnabledColor: Color.fromARGB(255, 4, 33, 14),
-      dropdownColor: Color.fromARGB(255, 2, 61, 15),
+      focusColor: Color.fromARGB(143, 53, 52, 52),
+      iconEnabledColor: Color.fromARGB(255, 151, 151, 151),
+      dropdownColor: Color.fromARGB(255, 51, 51, 51),
       value: dropdownValue,
       
       //icon: Icon(Icons.today_rounded, color: Color.fromARGB(255, 255, 255, 255), size: 25),

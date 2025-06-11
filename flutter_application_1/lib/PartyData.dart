@@ -15,7 +15,7 @@ class PartyData {
   static Map<String, Color> colors = {
     "PAN": Color.fromARGB(255, 35, 19, 141),
     "PRI": Color.fromARGB(255, 6, 87, 17),
-    "PRD": Color.fromARGB(255, 137, 127, 15),
+    "PRD": Color.fromARGB(255, 182, 149, 5),
     "MORENA": Color.fromARGB(255, 102, 4, 33)
   };
 
@@ -54,7 +54,7 @@ class PartyData {
   "Zacatecas": "mxZAC"
 };
 
-  static TextStyle styleCandidate = TextStyle(fontSize: 15, fontWeight: FontWeight.w700);
+  static TextStyle styleCandidate = TextStyle(fontSize: 17, fontWeight: FontWeight.w700, color: Colors.white);
 
 
   static Map<String, Row> winner = {
