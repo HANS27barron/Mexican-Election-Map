@@ -1,4 +1,6 @@
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: camel_case_types, use_key_in_widget_constructors, prefer_const_constructors, sort_child_properties_last, unnecessary_to_list_in_spreads
+
+//import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show ByteData, rootBundle;
 import 'package:excel/excel.dart';
@@ -58,7 +60,7 @@ Widget build(BuildContext context) {
     future: getResults(),
     builder: (BuildContext context, AsyncSnapshot snapshot) {
       if (snapshot.connectionState == ConnectionState.waiting) {
-        return SizedBox(child: Center(child:  CircularProgressIndicator(color: Color.fromARGB(255, 163, 163, 163),)), height: 100); // Show loading indicator
+        return SizedBox(child: Center(child: CircularProgressIndicator(color: Color.fromARGB(255, 163, 163, 163),)), height: 100); // Show loading indicator
       } else if (snapshot.hasData) {
       final Map<String, Map<String, int>> results = snapshot.data;
       final Map<String, int>? selectedVotes = results[selectedState.value];

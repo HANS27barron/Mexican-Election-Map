@@ -1,5 +1,6 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/DataExtraction.dart';
 
 const List<String> list = ["Seleccione","1994","2000","2006", "2012", "2018"];
 

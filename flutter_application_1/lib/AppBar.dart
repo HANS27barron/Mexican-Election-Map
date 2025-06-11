@@ -1,4 +1,5 @@
-import 'package:countries_world_map/components/canvas/shape_handler.dart';
+// ignore_for_file: camel_case_types, prefer_const_constructors_in_immutables, use_key_in_widget_constructors, prefer_const_constructors, no_leading_underscores_for_local_identifiers, avoid_unnecessary_containers, annotate_overrides
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Year.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -12,7 +13,7 @@ class mexAppBar extends StatelessWidget implements PreferredSizeWidget{
 
 
   
-  mexAppBar({
+  const mexAppBar({
     this.title="Mapa Electoral Mexicano",
     this.color= const Color.fromARGB(255, 33, 33, 33),
     required this.year

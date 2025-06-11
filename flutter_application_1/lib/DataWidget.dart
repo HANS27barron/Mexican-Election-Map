@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last, sized_box_for_whitespace, annotate_overrides
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/DataExtraction.dart';
 

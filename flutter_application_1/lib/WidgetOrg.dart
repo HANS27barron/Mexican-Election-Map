@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, annotate_overrides, use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/DataWidget.dart';
 import 'package:flutter_application_1/MexicoMap.dart';
