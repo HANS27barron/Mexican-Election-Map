@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show ByteData, rootBundle;
 import 'package:excel/excel.dart';
-import 'package:flutter_application_1/PartyIcon.dart';
+import 'package:flutter_application_1/PartyData.dart';
 
 /* class dataExtraction extends StatefulWidget {
   final ValueNotifier<String> year;
@@ -77,15 +77,17 @@ Widget build(BuildContext context) {
       if (snapshot.connectionState == ConnectionState.waiting) {
         return SizedBox(child: Center(child:  CircularProgressIndicator(color: Color.fromARGB(255, 171, 8, 32),)), height: 100); // Show loading indicator
       } else if (snapshot.hasData) {
-        final Map<String, Map<String, int>> results = snapshot.data;
-        final Map<String, int>? selectedVotes = results[selectedState.value];
+      final Map<String, Map<String, int>> results = snapshot.data;
+      final Map<String, int>? selectedVotes = results[selectedState.value];
       final sortedVotes = selectedVotes!.entries.toList()
       ..sort((a, b) => b.value.toInt().compareTo(a.value.toInt()));
+      final winnerString = "${sortedVotes[0].key}${year.value}";
          return Padding (padding: EdgeInsets.symmetric(vertical:20, horizontal: 20),
-         child: Column(
+         child: Column(children: [
           //crossAxisAlignment: CrossAxisAlignment.start,
-          children: sortedVotes.map((entry) {
-            final image = PartyIcon.images[entry.key];
+          PartyData.winner[winnerString]!,
+        ...sortedVotes.map((entry) {
+            final image = PartyData.images[entry.key];
             final totalVotes = sortedVotes.fold<int>(0, (sum, entry) => sum + entry.value);
             final percentage = ((entry.value/totalVotes)*100).toStringAsPrecision(4);
             return Padding(padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20), child: 
@@ -93,14 +95,15 @@ Widget build(BuildContext context) {
                 children: [
                   image ?? Icon(Icons.flag), 
                   SizedBox(width: 12),
-                  Text(entry.key,  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)), 
-                  SizedBox(width: 20), 
-                  Text("${(entry.value)} votos", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
+                  Text(entry.key,  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: PartyData.colors[entry.key])), 
+                  SizedBox(width: 40), 
+                  Text("$percentage%", style:TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
                   SizedBox(width: 20),
-                  Text("$percentage%", style:TextStyle(fontSize: 15, fontWeight: FontWeight.w600))
+                  Text("${(entry.value)} votos", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
                 ],
             ));
-          }).toList(),));
+          }).toList(),
+  ]));
         //return Text(sortedVotes.toString());
       } else if (snapshot.hasError) {
         return Text("");

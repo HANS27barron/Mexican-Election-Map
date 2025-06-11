@@ -72,6 +72,19 @@ flutter:
     - assets/PRI.png
     - assets/PRD.png
     - assets/MORENA.png
+    - assets/amlo0.jpg
+    - assets/amlo1.jpg
+    - assets/anaya.jpg
+    - assets/calderon.jpg
+    - assets/cardenas.jpg
+    - assets/cevallos.jpg
+    - assets/fox.jpg
+    - assets/labastida.jpg
+    - assets/madrazi.jpg
+    - assets/meade.jpg
+    - assets/peña.jpg
+    - assets/vazquez.jpg
+    - assets/zedillo.jpg
 
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
