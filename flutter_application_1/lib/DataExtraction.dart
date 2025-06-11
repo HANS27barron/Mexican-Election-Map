@@ -35,9 +35,9 @@ class dataExtraction extends StatelessWidget  {
       var row = sheet.row(i);
 
       String? state = row[1]?.value?.toString();
-      int? party1Votes = int.tryParse(row[6]?.value.toString() ?? '');
-      int? party2Votes = int.tryParse(row[7]?.value.toString() ?? '');
-      int? party3Votes = int.tryParse(row[8]?.value.toString() ?? '');
+      int? party1Votes = int.tryParse(row[7]?.value.toString() ?? '');
+      int? party2Votes = int.tryParse(row[8]?.value.toString() ?? '');
+      int? party3Votes = int.tryParse(row[9]?.value.toString() ?? '');
 
       if (state == null) continue;
 
@@ -79,15 +79,14 @@ Widget build(BuildContext context) {
       } else if (snapshot.hasData) {
         final Map<String, Map<String, int>> results = snapshot.data;
         final Map<String, int>? selectedVotes = results[selectedState.value];
-        final sortedVotes = selectedVotes!.entries.toList()
-          ..sort((a, b) => b.value.compareTo(a.value));
-        
+      final sortedVotes = selectedVotes!.entries.toList()
+      ..sort((a, b) => b.value.toInt().compareTo(a.value.toInt()));
          return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: sortedVotes.map((entry) {
             final image = PartyIcon.images[entry.key];
             return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
               child: Row(
                 children: [
                   image ?? Icon(Icons.flag), // Replace with actual party icons if needed
