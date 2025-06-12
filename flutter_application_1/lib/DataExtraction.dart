@@ -76,7 +76,7 @@ Widget build(BuildContext context) {
                     final image = PartyData.images[entry.key];
                     final totalVotes = sortedVotes.fold<int>(0, (sum, entry) => sum + entry.value);
                     final percentage = ((entry.value/totalVotes)*100).toStringAsPrecision(4);
-                return Padding(padding: EdgeInsets.symmetric(vertical: screenHeight*0.025), child: 
+                return Padding(padding: EdgeInsets.symmetric(vertical: screenHeight*0.025, horizontal: screenWidth*0.01), child: 
                   FittedBox(fit: BoxFit.scaleDown, child: Row(
                     children: [
                       SizedBox(height: screenHeight*0.15, child:  image ?? Icon(Icons.flag)), 

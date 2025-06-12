@@ -16,7 +16,7 @@ class PartyData {
     "PAN": Color.fromARGB(255, 50, 33, 145),
     "PRI": Color.fromARGB(255, 3, 94, 15),
     "PRD": Color.fromARGB(255, 182, 149, 5),
-    "MORENA": Color.fromARGB(255, 126, 0, 0)
+    "MORENA": Color.fromARGB(255, 125, 19, 19)
   };
 
   static TextStyle styleCandidate = TextStyle(fontWeight: FontWeight.w700, color: Colors.white);
