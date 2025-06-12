@@ -75,7 +75,6 @@ class _MexicoMapState extends State<MexicoMap> {
       final topParty = sortedVotes.first.key;
       stateParty[stateName]=topParty;
     });
-    print(stateParty);
 
     setState(() {
       aguascalientes = PartyData.colors[stateParty["Aguascalientes"]] ?? Color.fromARGB(255, 255, 255, 255);

@@ -14,12 +14,17 @@ class WidgetOrg extends StatelessWidget {
   Widget build(BuildContext context){
     return ValueListenableBuilder(valueListenable: selectedState, builder: (context, x, _){
       return ValueListenableBuilder(valueListenable: year, builder: (context, y, _){
-    return Scaffold(backgroundColor: Color.fromARGB(255, 2, 5, 19), 
-    body: Container(child: Column(children: [SizedBox(height: 20), Row(
+    return Scaffold(backgroundColor: Color.fromARGB(255, 12, 12, 12), 
+    body: Container(child: Column(children: [SizedBox(height: 20), 
+    SizedBox(height: MediaQuery.of(context).size.height * 0.83, width: MediaQuery.of(context).size.width*1,
+    child:  ListView(scrollDirection: Axis.horizontal,
         children: [
-          MexicoMap(selectedState: selectedState, year: year,), SizedBox(width: 60,), 
-          DataWidget(selectedState: selectedState, year: year)
-          ])]))
+          SizedBox(width: MediaQuery.of(context).size.width*0.58, 
+            child: MexicoMap(selectedState: selectedState, year: year,),), 
+          SizedBox(width: MediaQuery.of(context).size.width*0.04),
+          SizedBox(width: MediaQuery.of(context).size.width*0.32, 
+            child: DataWidget(selectedState: selectedState, year: year))
+          ]))]))
           );
   });
 });

@@ -39,16 +39,18 @@ class mexAppBar extends StatelessWidget implements PreferredSizeWidget{
                       TextButton(onPressed: _launchUrl, child: Text("Presione para ir al sitio", style: TextStyle(fontWeight: FontWeight.bold, color: Color.fromARGB(255, 180, 178, 180)),))
                     ]))));
     
-    return PreferredSize(preferredSize: const Size.fromHeight(10), child: LayoutBuilder(builder: (context, constraints) {
+    return 
+    PreferredSize(preferredSize: Size.fromHeight(10), child: LayoutBuilder(builder: (context, constraints) {
       double width = constraints.maxWidth;
     return AppBar(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical(bottom: Radius.circular(10))),   
       title: Text(title, style: TextStyle(color: Color.fromARGB(255, 255, 255, 255), fontWeight: FontWeight.w600, letterSpacing: 1.5)),
       backgroundColor: color,
-      actions: [Container(child: Padding(padding: EdgeInsets.only(right: width*0.008), child: Text("Año Electoral:", style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),),),),
-        Container(child: Padding(padding: EdgeInsets.only(right: width*0.29), child: DropdownButtonExample(year: year))),
-        Container(child:Padding(padding: EdgeInsets.only(right: width*0.04), child: TextButton.icon(onPressed: ()=> openDialog(), label: Text("Referencias", style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),), icon: Icon(Icons.question_mark_rounded, color: Colors.white,)),
-     ))], 
+      actions: [Row(children: 
+      [Padding(padding: EdgeInsets.only(right: width*0.008), child: Text("Año Electoral:", style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),),),
+        Padding(padding: EdgeInsets.only(right: width*0.29), child: DropdownButtonExample(year: year)),
+        Padding(padding: EdgeInsets.only(right: width*0.04), child: TextButton.icon(onPressed: ()=> openDialog(), label: Text("Referencias", style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),), icon: Icon(Icons.question_mark_rounded, color: Colors.white,)),
+    )])], 
     );
   }));}
     Size get preferredSize => Size.fromHeight(kToolbarHeight);

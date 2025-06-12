@@ -6,13 +6,6 @@ import 'package:flutter/services.dart' show ByteData, rootBundle;
 import 'package:excel/excel.dart';
 import 'package:flutter_application_1/PartyData.dart';
 
-/* class dataExtraction extends StatefulWidget {
-  final ValueNotifier<String> year;
-  const dataExtraction({required this.year});
-
-  @override
-  State<dataExtraction> createState() => _dataExtractionState();
-} */
 
 class dataExtraction extends StatelessWidget  {
   final ValueNotifier<String> year;
@@ -67,27 +60,33 @@ Widget build(BuildContext context) {
       final sortedVotes = selectedVotes!.entries.toList()
       ..sort((a, b) => b.value.toInt().compareTo(a.value.toInt()));
       final winnerString = "${sortedVotes[0].key}${year.value}";
-         return Padding (padding: EdgeInsets.symmetric(vertical:20, horizontal: 20),
+         return SingleChildScrollView(scrollDirection: Axis.horizontal, child: 
+          SingleChildScrollView(scrollDirection: Axis.vertical, child: 
+
+         Padding (padding: EdgeInsets.symmetric(vertical:30, horizontal: 20),
          child: Column(children: [
           PartyData.winner[winnerString]!,
         ...sortedVotes.map((entry) {
             final image = PartyData.images[entry.key];
             final totalVotes = sortedVotes.fold<int>(0, (sum, entry) => sum + entry.value);
             final percentage = ((entry.value/totalVotes)*100).toStringAsPrecision(4);
+            final screenHeight = MediaQuery.of(context).size.height;
+            final screenWidth = MediaQuery.of(context).size.width;
+
             return Padding(padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20), child: 
               Row(
                 children: [
-                  image ?? Icon(Icons.flag), 
-                  SizedBox(width: 12),
-                  Text(entry.key,  style: TextStyle(decorationColor: Colors.amber, fontSize: 25, fontWeight: FontWeight.bold, color: PartyData.colors[entry.key])), 
-                  SizedBox(width: 40), 
-                  Text("$percentage%", style:TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Colors.white)),
-                  SizedBox(width: 20),
-                  Text("${(entry.value)} votos", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: Colors.white)),
+                  SizedBox(height: screenHeight*0.1, child:  image ?? Icon(Icons.flag)), 
+                  SizedBox(width: screenWidth*0.01),
+                  SizedBox(width: screenWidth*0.04, child: Text(entry.key,  style: TextStyle(decorationColor: Colors.amber, fontSize: 25, fontWeight: FontWeight.bold, color: PartyData.colors[entry.key]))), 
+                  SizedBox(width: screenWidth*0.02), 
+                  SizedBox(width: screenWidth*0.05, child: Text("$percentage%", style:TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Colors.white))),
+                  SizedBox(width: screenWidth*0.01),
+                  SizedBox(width: screenWidth*0.09, child: Text("${(entry.value)} votos", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: Colors.white))),
                 ],
             ));
           }).toList(),
-  ]));
+  ]))));
       } else if (snapshot.hasError) {
         return Text("");
       } else {
