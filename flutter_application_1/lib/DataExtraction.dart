@@ -49,50 +49,53 @@ class dataExtraction extends StatelessWidget  {
 
  @override
 Widget build(BuildContext context) {
-  return FutureBuilder(
-    future: getResults(),
-    builder: (BuildContext context, AsyncSnapshot snapshot) {
-      if (snapshot.connectionState == ConnectionState.waiting) {
-        return SizedBox(child: Center(child: CircularProgressIndicator(color: Color.fromARGB(255, 163, 163, 163),)), height: 100); // Show loading indicator
-      } else if (snapshot.hasData) {
-      final Map<String, Map<String, int>> results = snapshot.data;
-      final Map<String, int>? selectedVotes = results[selectedState.value];
-      final sortedVotes = selectedVotes!.entries.toList()
-      ..sort((a, b) => b.value.toInt().compareTo(a.value.toInt()));
-      final winnerString = "${sortedVotes[0].key}${year.value}";
-         return SingleChildScrollView(scrollDirection: Axis.horizontal, child: 
-          SingleChildScrollView(scrollDirection: Axis.vertical, child: 
+  return LayoutBuilder(builder: (context, constraints){
+    final screenHeight = constraints.maxHeight;
+    final screenWidth = constraints.maxWidth;
 
-         Padding (padding: EdgeInsets.symmetric(vertical:30, horizontal: 20),
-         child: Column(children: [
-          PartyData.winner[winnerString]!,
-        ...sortedVotes.map((entry) {
-            final image = PartyData.images[entry.key];
-            final totalVotes = sortedVotes.fold<int>(0, (sum, entry) => sum + entry.value);
-            final percentage = ((entry.value/totalVotes)*100).toStringAsPrecision(4);
-            final screenHeight = MediaQuery.of(context).size.height;
-            final screenWidth = MediaQuery.of(context).size.width;
+    return FutureBuilder(
+      future: getResults(),
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
 
-            return Padding(padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20), child: 
-              Row(
-                children: [
-                  SizedBox(height: screenHeight*0.1, child:  image ?? Icon(Icons.flag)), 
-                  SizedBox(width: screenWidth*0.01),
-                  SizedBox(width: screenWidth*0.04, child: Text(entry.key,  style: TextStyle(decorationColor: Colors.amber, fontSize: 25, fontWeight: FontWeight.bold, color: PartyData.colors[entry.key]))), 
-                  SizedBox(width: screenWidth*0.02), 
-                  SizedBox(width: screenWidth*0.05, child: Text("$percentage%", style:TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Colors.white))),
-                  SizedBox(width: screenWidth*0.01),
-                  SizedBox(width: screenWidth*0.09, child: Text("${(entry.value)} votos", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: Colors.white))),
-                ],
-            ));
-          }).toList(),
-  ]))));
-      } else if (snapshot.hasError) {
-        return Text("");
-      } else {
-        return Text("No data found.");
-      }
-    },
-  );
-}
-  }
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return SizedBox(height:screenHeight*0.1, child: Center(child: CircularProgressIndicator(color: Color.fromARGB(255, 163, 163, 163),))); // Show loading indicator
+        } 
+        
+        else if (snapshot.hasData) {
+          final Map<String, Map<String, int>> results = snapshot.data;
+          final Map<String, int>? selectedVotes = results[selectedState.value];
+          final sortedVotes = selectedVotes!.entries.toList()
+          ..sort((a, b) => b.value.toInt().compareTo(a.value.toInt()));
+          final winnerString = "${sortedVotes[0].key}${year.value}";
+
+            return SingleChildScrollView(scrollDirection: Axis.vertical, child: 
+                Padding (padding: EdgeInsets.symmetric(vertical:screenHeight*0.01, horizontal: screenWidth*0.04),
+                child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [SizedBox( height: screenHeight*0.3, child: SingleChildScrollView(scrollDirection: Axis.horizontal, child: 
+                  PartyData.winner[winnerString]!)),
+                ...sortedVotes.map((entry) {
+                    final image = PartyData.images[entry.key];
+                    final totalVotes = sortedVotes.fold<int>(0, (sum, entry) => sum + entry.value);
+                    final percentage = ((entry.value/totalVotes)*100).toStringAsPrecision(4);
+                return Padding(padding: EdgeInsets.symmetric(vertical: screenHeight*0.025), child: 
+                  FittedBox(fit: BoxFit.scaleDown, child: Row(
+                    children: [
+                      SizedBox(height: screenHeight*0.15, child:  image ?? Icon(Icons.flag)), 
+                      SizedBox(width: screenWidth*0.03),
+                      Text(entry.key,  style: TextStyle(fontSize: screenHeight*0.055, fontWeight: FontWeight.bold, color: PartyData.colors[entry.key])), 
+                      SizedBox(width: screenWidth*0.075), 
+                      Text("$percentage%", style:TextStyle(fontSize: screenHeight*0.04, fontWeight: FontWeight.w600, color: Colors.white)),
+                      SizedBox(width: screenWidth*0.06),
+                      Text("${(entry.value)} votos", style: TextStyle(fontSize: screenHeight*0.03, fontWeight: FontWeight.w600, color: Colors.white)),
+                    ],
+                )));
+              }).toList(),
+      ])));
+        } else if (snapshot.hasError) {
+          return Text("");
+        } else {
+          return Text("No data found.");
+        }
+      },
+    );
+});
+}}

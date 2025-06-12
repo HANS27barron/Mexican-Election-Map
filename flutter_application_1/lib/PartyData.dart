@@ -6,27 +6,27 @@ import 'package:flutter/material.dart';
 class PartyData {
 
   static Map<String, Image> images = {
-    "PAN": Image(image: AssetImage("assets/PAN.png"), width: 75, height: 75,),
-    "PRI": Image(image: AssetImage("assets/PRI.png"), width: 75, height: 75),
-    "PRD": Image(image: AssetImage("assets/PRD.png"),width: 75, height: 75),
-    "MORENA": Image(image: AssetImage("assets/MORENA.png"), width: 75, height: 75)
+    "PAN": Image(image: AssetImage("assets/PAN.png")),
+    "PRI": Image(image: AssetImage("assets/PRI.png")),
+    "PRD": Image(image: AssetImage("assets/PRD.png")),
+    "MORENA": Image(image: AssetImage("assets/MORENA.png"))
   };
 
   static Map<String, Color> colors = {
-    "PAN": Color.fromARGB(255, 35, 19, 141),
-    "PRI": Color.fromARGB(255, 6, 87, 17),
+    "PAN": Color.fromARGB(255, 50, 33, 145),
+    "PRI": Color.fromARGB(255, 3, 94, 15),
     "PRD": Color.fromARGB(255, 182, 149, 5),
-    "MORENA": Color.fromARGB(255, 102, 4, 4)
+    "MORENA": Color.fromARGB(255, 126, 0, 0)
   };
 
-  static TextStyle styleCandidate = TextStyle(fontSize: 17, fontWeight: FontWeight.w700, color: Colors.white);
+  static TextStyle styleCandidate = TextStyle(fontWeight: FontWeight.w700, color: Colors.white);
 
 
   static Map<String, Row> winner = {
     "PRI1994": Row(mainAxisAlignment: MainAxisAlignment.center, children: [Text("Ernesto Zedillo", style: styleCandidate), SizedBox(width: 20,),
-                          Image(image: AssetImage("assets/zedillo.jpg"), height: 120,)],),
+                          Image(image: AssetImage("assets/zedillo.jpg"))],),
     "PRI2000": Row(mainAxisAlignment: MainAxisAlignment.center, children: [Text("Francisco Labastida", style: styleCandidate), SizedBox(width: 20,),
-                          Image(image: AssetImage("assets/labastida.png"), height: 120,)],),
+                          Image(image: AssetImage("assets/labastida.png"),)],),
     "PRI2006": Row(mainAxisAlignment: MainAxisAlignment.center, children: [Text("Roberto Madrazo Pintado", style: styleCandidate), SizedBox(width: 20,),
                           Image(image: AssetImage("assets/madrazi.jpg"), height: 120,)],),
     "PRI2012": Row(mainAxisAlignment: MainAxisAlignment.center, children: [Text("Enrique Peña Nieto", style: styleCandidate), SizedBox(width: 20,),
@@ -47,11 +47,11 @@ class PartyData {
                           Image(image: AssetImage("assets/cardenas.jpg"), height: 120,)],),
     "PRD2000": Row(mainAxisAlignment: MainAxisAlignment.center, children: [Text("Cuauhtémoc Cárdenas", style: styleCandidate), SizedBox(width: 20,),
                           Image(image: AssetImage("assets/cardenas.jpg"), height: 120,)],),
-    "PRD2006": Row(mainAxisAlignment: MainAxisAlignment.center, children: [Text("Andrés Manual López Obrador", style: styleCandidate), SizedBox(width: 20,),
+    "PRD2006": Row(mainAxisAlignment: MainAxisAlignment.center, children: [Text("Andrés M. López Obrador", style: styleCandidate), SizedBox(width: 20,),
                           Image(image: AssetImage("assets/amlo0.jpg"), height: 120,)],),
-    "PRD2012": Row(mainAxisAlignment: MainAxisAlignment.center, children: [Text("Andrés Manual López Obrador", style: styleCandidate), SizedBox(width: 20,),
+    "PRD2012": Row(mainAxisAlignment: MainAxisAlignment.center, children: [Text("Andrés M. López Obrador", style: styleCandidate), SizedBox(width: 20,),
                           Image(image: AssetImage("assets/amlo0.jpg"), height: 120,)],),
-    "MORENA2018": Row(mainAxisAlignment: MainAxisAlignment.center, children: [Text("Andrés Manual López Obrador", style: styleCandidate), SizedBox(width: 20,),
+    "MORENA2018": Row(mainAxisAlignment: MainAxisAlignment.center, children: [Text("Andrés M. López Obrador", style: styleCandidate), SizedBox(width: 20,),
                           Image(image: AssetImage("assets/amlo1.jpg"), height: 120,)],),                      
   };
 
