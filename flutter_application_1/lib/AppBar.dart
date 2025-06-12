@@ -11,8 +11,6 @@ class mexAppBar extends StatelessWidget implements PreferredSizeWidget{
   final Color color;
   final ValueNotifier<String> year;
 
-
-  
   const mexAppBar({
     this.title="Mapa Electoral Mexicano",
     this.color= const Color.fromARGB(255, 33, 33, 33),
