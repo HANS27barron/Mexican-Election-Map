@@ -19,6 +19,12 @@ In this interactive web page, select your electoral year, hover or click on ever
 - State managment
 - Map interactivity
 
+## Tools
+- Flutter
+- Excel
+- Interactive map
+- Future builders
+
 ## Code Architecture
 
 - Flutter Application
@@ -34,12 +40,6 @@ In this interactive web page, select your electoral year, hover or click on ever
       - WidgetOrg.dart
       - Year.dart
       - main.dart
-
-## Tools
-- Flutter
-- Excel
-- Interactive map
-- Future builders
 
 ## Databases
 
